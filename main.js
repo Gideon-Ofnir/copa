@@ -10,7 +10,7 @@
  *   3. companion 的前四个字母 ——最直接的解释
  *   4. 猫爪叩两下：CO-PA，CO-PA ——最可爱的解释
  *
- * 作者：AlantHSY（法瑞斯）、Gideon-Ofnir（基甸·奥夫尼尔）、CYC
+ * 作者：法瑞斯（萝卜水母 / Alant）、Gideon-Ofnir（基甸·奥夫尼尔）、CYC
  * 许可：MIT
  */
 
