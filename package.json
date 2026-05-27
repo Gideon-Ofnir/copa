@@ -1,14 +1,18 @@
 {
-  "name": "desktop-companion",
+  "name": "copa",
   "version": "0.1.0",
-  "description": "桌面场景伴侣框架——一个角色包就是一个桌面伴侣。透明底桌宠、场景陪伴、大场景群聊，三种模式一键切换。",
+  "description": "COPA — 桌面场景伴侣框架。COmpanion + OPA(开放式个人AI)，也作西班牙语「杯子」——风暴城堡干杯。",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
     "dev": "electron . --dev"
   },
-  "keywords": ["desktop-pet", "ai-companion", "electron", "open-source", "desktop-companion"],
-  "author": "",
+  "keywords": ["desktop-pet", "ai-companion", "electron", "open-source", "desktop-companion", "copa"],
+  "author": "AlantHSY <alant.hsy@gmail.com> (https://github.com/AlantHSY)",
+  "contributors": [
+    "Gideon-Ofnir (基甸·奥夫尼尔)",
+    "CYC"
+  ],
   "license": "MIT",
   "devDependencies": {
     "electron": "^33.0.0"

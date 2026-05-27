@@ -1,3 +1,19 @@
+/*
+ * COPA — 桌面场景伴侣框架
+ * ============================
+ *
+ * 名字：C-O-P-A（四个字母，念起来像猫爪轻叩桌面）
+ *
+ * 四个解释（非官方，都是真的）：
+ *   1. COmpanion + OPA（开放式个人AI）——最正式的解释
+ *   2. 西班牙语「copa」= 杯子 ——风暴城堡干杯
+ *   3. companion 的前四个字母 ——最直接的解释
+ *   4. 猫爪叩两下：CO-PA，CO-PA ——最可爱的解释
+ *
+ * 作者：AlantHSY（法瑞斯）、Gideon-Ofnir（基甸·奥夫尼尔）、CYC
+ * 许可：MIT
+ */
+
 const { app, BrowserWindow, Tray, Menu, screen, ipcMain, nativeImage } = require('electron');
 const path = require('path');
 
