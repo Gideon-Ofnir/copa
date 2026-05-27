@@ -1,0 +1,293 @@
+/* ===== 全局 ===== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body {
+  width: 100%; height: 100%;
+  overflow: hidden;
+  background: transparent;
+  font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+  user-select: none;
+}
+
+.mode-view { display: none; width: 100%; height: 100%; }
+.mode-view.active { display: flex; }
+
+/* ===== 模式切换按钮 ===== */
+.mode-btn {
+  position: absolute;
+  top: 4px; right: 4px;
+  width: 24px; height: 24px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.25);
+  color: rgba(255,255,255,0.7);
+  font-size: 12px;
+  cursor: pointer;
+  z-index: 999;
+  transition: background 0.2s;
+}
+.mode-btn:hover { background: rgba(0,0,0,0.45); }
+
+/* ===== 模式一：透明底桌宠 ===== */
+#mode-transparent {
+  background: transparent !important;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+#pet-container {
+  position: relative;
+  display: inline-block;
+  cursor: grab;
+}
+#pet-container:active { cursor: grabbing; }
+
+#pet-sprite {
+  display: block;
+  max-width: 180px;
+  max-height: 220px;
+  image-rendering: auto;
+  -webkit-user-drag: none;
+  transition: transform 0.1s ease;
+}
+#pet-sprite.poked { transform: scale(1.08); }
+#pet-sprite.talking { animation: pet-bounce 0.4s ease; }
+
+/* 图片加载失败时的emoji占位 */
+.pet-fallback {
+  font-size: 120px;
+  text-align: center;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
+}
+.pet-fallback.hidden { display: none; }
+
+@keyframes pet-bounce {
+  0%, 100% { transform: translateY(0); }
+  30% { transform: translateY(-8px); }
+  60% { transform: translateY(-3px); }
+}
+
+/* 对话气泡 */
+.bubble {
+  position: absolute;
+  bottom: 105%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255,255,255,0.95);
+  color: #333;
+  padding: 8px 14px;
+  border-radius: 16px;
+  font-size: 13px;
+  line-height: 1.5;
+  max-width: 200px;
+  word-wrap: break-word;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+  z-index: 10;
+  transition: opacity 0.3s, transform 0.3s;
+}
+.bubble.hidden { opacity: 0; transform: translateX(-50%) translateY(6px); pointer-events: none; }
+
+.bubble-tail {
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0; height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid rgba(255,255,255,0.95);
+}
+
+/* 戳一下反馈 */
+.poke-fx {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 20px;
+  pointer-events: none;
+  transition: all 0.6s ease-out;
+  z-index: 20;
+}
+.poke-fx.hidden { opacity: 0; transform: translateX(-50%) translateY(10px); }
+.poke-fx.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-20px);
+  animation: poke-float 0.6s ease-out forwards;
+}
+@keyframes poke-float {
+  0% { opacity: 1; transform: translateX(-50%) translateY(0); }
+  100% { opacity: 0; transform: translateX(-50%) translateY(-30px); }
+}
+
+/* ===== 模式二：场景陪伴 ===== */
+#mode-scene {
+  background: rgba(20, 18, 24, 0.88);
+  border-radius: 16px;
+  flex-direction: column;
+}
+
+.scene-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 8px;
+}
+
+.scene-label {
+  text-align: center;
+  color: rgba(255,255,255,0.5);
+  font-size: 11px;
+  padding: 4px 0 6px;
+}
+
+.scene-main {
+  display: flex;
+  flex: 1;
+  gap: 8px;
+  overflow: hidden;
+}
+
+.scene-sprite-area {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.2);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+#scene-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.6;
+}
+
+#scene-sprite {
+  position: relative;
+  z-index: 2;
+  max-width: 90%;
+  max-height: 90%;
+  -webkit-user-drag: none;
+}
+
+.scene-chat {
+  display: flex;
+  flex-direction: column;
+  width: 55%;
+  gap: 6px;
+}
+
+.chat-bubbles {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 6px;
+}
+
+.chat-bubbles .msg {
+  padding: 8px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  line-height: 1.5;
+  max-width: 85%;
+}
+.chat-bubbles .msg.user { align-self: flex-end; background: rgba(180,160,200,0.3); color: #eee; }
+.chat-bubbles .msg.character { align-self: flex-start; background: rgba(255,255,255,0.12); color: #ddd; }
+
+.chat-input-area {
+  display: flex;
+  gap: 4px;
+}
+.chat-input-area input {
+  flex: 1;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 8px;
+  padding: 6px 10px;
+  color: #eee;
+  font-size: 12px;
+  outline: none;
+}
+.chat-input-area input::placeholder { color: rgba(255,255,255,0.3); }
+.chat-input-area button {
+  background: rgba(180,160,200,0.3);
+  border: none;
+  border-radius: 8px;
+  color: #eee;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* ===== 模式三：大场景群聊 ===== */
+#mode-hall {
+  background: rgba(15, 12, 20, 0.9);
+  border-radius: 16px;
+  flex-direction: column;
+}
+
+.hall-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 8px;
+}
+
+.hall-scene-label {
+  text-align: center;
+  color: rgba(255,220,180,0.6);
+  font-size: 13px;
+  letter-spacing: 2px;
+  padding: 4px 0 6px;
+}
+
+.hall-scene {
+  position: relative;
+  flex: 1;
+  border-radius: 10px;
+  overflow: hidden;
+  background: rgba(0,0,0,0.3);
+}
+
+#hall-bg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.5;
+}
+
+#hall-characters {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+}
+
+.hall-char-sprite {
+  position: absolute;
+  cursor: pointer;
+  transition: transform 0.15s;
+  -webkit-user-drag: none;
+}
+.hall-char-sprite:hover { transform: scale(1.05); }
+.hall-char-sprite.poked { transform: scale(1.1); }
+
+.hall-bubble {
+  bottom: auto;
+  top: 50%;
+  left: 50%;
+  max-width: 300px;
+  font-size: 14px;
+}
+
+#hall-bubble-speaker {
+  display: block;
+  font-size: 10px;
+  color: #999;
+  margin-top: 4px;
+}

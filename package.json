@@ -1,0 +1,16 @@
+{
+  "name": "desktop-companion",
+  "version": "0.1.0",
+  "description": "桌面场景伴侣框架——一个角色包就是一个桌面伴侣。透明底桌宠、场景陪伴、大场景群聊，三种模式一键切换。",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --dev"
+  },
+  "keywords": ["desktop-pet", "ai-companion", "electron", "open-source", "desktop-companion"],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^33.0.0"
+  }
+}

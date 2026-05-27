@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>桌面伴侣</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ====== 模式一：透明底桌宠 ====== -->
+  <div id="mode-transparent" class="mode-view active">
+    <div id="pet-container" class="pet-draggable">
+      <img id="pet-sprite" src="../characters/gideon/transparent/idle.png"
+           alt="角色" draggable="false"
+           onerror="this.style.display='none'; document.getElementById('pet-fallback').classList.remove('hidden')" />
+      <div id="pet-fallback" class="pet-fallback hidden">🦊</div>
+      <!-- 对话气泡 -->
+      <div id="pet-bubble" class="bubble hidden">
+        <span id="pet-bubble-text"></span>
+        <div class="bubble-tail"></div>
+      </div>
+      <!-- 戳一下的视觉反馈 -->
+      <div id="pet-poke-fx" class="poke-fx hidden">❤</div>
+    </div>
+    <!-- 切换按钮 -->
+    <button id="btn-mode" class="mode-btn" title="切换模式">🔲</button>
+  </div>
+
+  <!-- ====== 模式二：场景陪伴 ====== -->
+  <div id="mode-scene" class="mode-view">
+    <div class="scene-container">
+      <div class="scene-label" id="scene-name">基甸的书房</div>
+      <div class="scene-main">
+        <div class="scene-sprite-area">
+          <img id="scene-bg" src="../characters/gideon/scene-bg.png" alt="场景" draggable="false" />
+          <img id="scene-sprite" src="../characters/gideon/idle.png" alt="角色" draggable="false" />
+        </div>
+        <div class="scene-chat">
+          <div id="scene-bubbles" class="chat-bubbles"></div>
+          <div class="chat-input-area">
+            <input id="scene-input" type="text" placeholder="说点什么..." />
+            <button id="scene-send">→</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button id="btn-mode-scene" class="mode-btn" title="切换模式">🔲</button>
+  </div>
+
+  <!-- ====== 模式三：大场景群聊 ====== -->
+  <div id="mode-hall" class="mode-view">
+    <div class="hall-container">
+      <div class="hall-scene-label" id="hall-name">风暴城堡 · 圆桌大厅</div>
+      <div class="hall-scene">
+        <img id="hall-bg" src="../scenes/storm-hall.png" alt="风暴城堡大厅" draggable="false" />
+        <!-- 各角色位置由CSS absolute定位，由角色包config.json驱动 -->
+        <div id="hall-characters"></div>
+      </div>
+      <!-- 触发对话时弹出的气泡 -->
+      <div id="hall-bubble" class="bubble hall-bubble hidden">
+        <span id="hall-bubble-text"></span>
+        <span id="hall-bubble-speaker"></span>
+      </div>
+    </div>
+    <button id="btn-mode-hall" class="mode-btn" title="切换模式">🔲</button>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
